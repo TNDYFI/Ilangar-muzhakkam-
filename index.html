@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>இளைஞர் முழக்கம்</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Firebase SDK Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+
+    <!-- SIDEBAR MENU (Off-Canvas) -->
+    <div class="sidebar" id="sidebarMenu">
+        <div class="sidebar-header">
+            <div class="logo">இளைஞர் முழக்கம்</div>
+            <div class="close-btn" onclick="toggleMenu()">✕</div>
+        </div>
+        
+        <!-- Category Grid -->
+        <div class="menu-grid">
+            <div>இந்தியா</div>
+            <div>உலகம்</div>
+            <div>சமூகம்</div>
+            <div>விளையாட்டு</div>
+            <div>அரசியல்</div>
+            <div>இளைஞர் நலம்</div>
+        </div>
+
+        <!-- List Items -->
+        <ul class="menu-list">
+            <li>📹 வீடியோக்கள்</li>
+            <li>🎙️ பாட்காஸ்ட்</li>
+            <li>📸 புகைப்படங்கள்</li>
+            <li>📰 மாத இதழ்கள்</li>
+        </ul>
+    </div>
+
+    <!-- MAIN HEADER -->
+    <header class="top-header">
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <div class="logo">இளைஞர்<br>முழக்கம்</div>
+        <div>
+            <button class="subscribe-btn">SUBSCRIBE</button>
+            <span class="search-icon">🔍</span>
+        </div>
+    </header>
+
+    <!-- SUB HEADER (Date & ePaper) -->
+    <div class="sub-header">
+        <span class="hand-font" id="current-date">July 4, 2026</span>
+        <a href="#" class="hand-font">e-Paper</a>
+    </div>
+
+    <!-- SPORTS WIDGET -->
+    <h2 class="section-title hand-font">FIFA WC 2026 ⚽</h2>
+    <div class="sports-container">
+        <!-- Finished Match -->
+        <div class="score-card">
+            <div class="status">FINISHED</div>
+            <div class="team-row"><span>🇨🇴 COL</span> <span>3</span></div>
+            <div class="team-row"><span>🇬🇭 GHA</span> <span>2</span></div>
+            <div class="status" style="margin-top:8px;">3:30 IST</div>
+        </div>
+        <!-- Live Match -->
+        <div class="score-card">
+            <div class="status live">🔴 LIVE</div>
+            <div class="team-row"><span>🇨🇦 CAN</span> <span></span></div>
+            <div class="team-row"><span>🇲🇦 MAR</span> <span class="hand-font" style="color:black; font-size:11px;">smokes</span></div>
+            <div class="status" style="margin-top:8px;">07:00 IST</div>
+        </div>
+    </div>
+
+    <!-- DYNAMIC NEWS FEED -->
+    <h2 class="section-title hand-font">TOP NEWS</h2>
+    <main class="news-feed" id="news-feed-target">
+        <p style="text-align: center; color: #888; font-size: 20px; margin: 30px 0;">செய்திகள் ஏதும் இல்லை.</p>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>இளைஞர் முழக்கம் - அட்மின் கன்சோல்</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Firebase SDK Compat v10.8.0 -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    
+    <style>
+        /* அட்மின் பக்கத்திற்கான பிரத்யேக கூடுதல் ஸ்டைல்கள் */
+        .admin-page {
+            padding: 20px 15px;
+            margin-top: 60px;
+        }
+        .admin-card {
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .form-group {
+            margin-bottom: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 13px;
+            font-weight: bold;
+            color: var(--dark-text);
+            text-transform: uppercase;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: sans-serif;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            border-color: var(--primary-red);
+            outline: none;
+        }
+        .btn-publish {
+            background: var(--primary-red);
+            color: white;
+            width: 100%;
+            border: none;
+            padding: 14px;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-publish:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+        }
+        .preview-box {
+            margin-top: 15px;
+            display: none;
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid var(--border-light);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- App Bar Fixed -->
+    <header class="app-bar">
+        <div class="logo-area">
+            <h1 class="app-logo">📢 அட்மின் கன்சோல்</h1>
+        </div>
+        <a href="index.html" target="_blank" style="text-decoration:none; font-size:12px; font-weight:bold; color:var(--primary-red); font-family:sans-serif;">தளம் காண்க ↗</a>
+    </header>
+
+    <!-- Main Form Area -->
+    <main class="admin-page">
+        <div class="admin-card">
+            <form id="advancedNewsForm">
+                
+                <div class="form-group">
+                    <label>செய்தி தலைப்பு (Headline)</label>
+                    <input type="text" id="newsTitle" placeholder="முக்கிய செய்தியின் தலைப்பை உள்ளிடவும்..." required>
+                </div>
+
+                <div class="form-group">
+                    <label>பிரிவு (Category)</label>
+                    <select id="newsCategory">
+                        <option value="இந்தியா">இந்தியா</option>
+                        <option value="உலகம்">உலகம்</option>
+                        <option value="சமூகம்">சமூகம்</option>
+                        <option value="விளையாட்டு">விளையாட்டு</option>
+                        <option value="அரசியல்">அரசியல்</option>
+                        <option value="இங்களுக்கு நலம்">இளைஞர் நலம்</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>புகைப்பட முகவரி (Image URL)</label>
+                    <input type="url" id="newsImgUrl" placeholder="https://images.unsplash.com/... புகைப்பட லிங்க்" required>
+                    <!-- லைவ் இமேஜ் ப்ரிவியூ காட்டும் இடம் -->
+                    <img id="imgPreview" class="preview-box" alt="Image Preview">
+                </div>
+
+                <div class="form-group">
+                    <label>செய்தி விவரம் (Full Article / Body)</label>
+                    <textarea id="newsDesc" rows="8" placeholder="The Hindu பாணியில் செய்தியின் முழு விவரத்தை இங்கே எழுதவும்..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-publish" id="submitBtn">செய்தியை உடனடியாக வெளியிடு 🚀</button>
+            </form>
+        </div>
+    </main>
+
+    <script src="admin.js"></script>
+</body>
+</html>
