@@ -12,7 +12,7 @@ setTimeout(() => {
     }
 }, 2500);
 
-// 2. Toggle Menus (Exposed globally for HTML onclick attributes)
+// 2. Toggle Menus 
 window.toggleSidebar = function() {
     document.getElementById('sidebar').classList.toggle('active');
 }
@@ -26,7 +26,35 @@ window.toggleTheme = function() {
     document.getElementById('dropdownMenu').classList.remove('active');
 }
 
-// 3. Create Moving Particles for Dark Mode Background
+// 3. Modals 
+window.openModal = function(modalId) {
+    document.getElementById(modalId).classList.add('active');
+    document.getElementById('dropdownMenu').classList.remove('active'); 
+}
+
+window.closeModal = function(modalId) {
+    document.getElementById(modalId).classList.remove('active');
+}
+
+// 4. NEW: Footer Tab Switcher (SPA Logic)
+window.switchTab = function(pageId, element) {
+    // Hide all pages
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(page => page.classList.remove('active'));
+    
+    // Show selected page
+    document.getElementById('page-' + pageId).classList.add('active');
+
+    // Update Footer Icons Active State
+    const footerItems = document.querySelectorAll('.footer-item');
+    footerItems.forEach(item => item.classList.remove('active'));
+    element.classList.add('active');
+    
+    // Scroll to top when changing tab
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// 5. Create Moving Particles for Dark Mode Background
 const bg = document.getElementById('movingBg');
 if (bg) {
     for(let i=0; i<30; i++) {
@@ -54,13 +82,13 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Real-time Data Fetching from Firestore collection named "news"
+// Real-time Data Fetching from Firestore
 const q = query(collection(db, "news"), orderBy("timestamp", "desc"));
 const container = document.getElementById('news-container');
 
 if (container) {
     onSnapshot(q, (snapshot) => {
-        container.innerHTML = ''; // Clear loading content
+        container.innerHTML = ''; 
         if(snapshot.empty) {
             container.innerHTML = '<div style="text-align: center; margin-top: 50px; font-size: 20px; color: gray;">செய்திகள் ஏதும் இல்லை.</div>';
             return;
