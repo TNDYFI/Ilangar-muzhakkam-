@@ -1,33 +1,4 @@
-<!DOCTYPE html>
-<html lang="ta">
-<head>
-<style>
-    body {
-        background-color: #000; /* Dark Background */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-    }
-    .muzhakkam-text {
-        font-family: 'Arial', sans-serif;
-        font-size: 150px;
-        font-weight: 900;
-        fill: red;
-        stroke: white; /* தடிமனான வெள்ளை பார்டர் */
-        stroke-width: 8px; 
-        paint-order: stroke;
-        stroke-linejoin: round;
-    }
-    .ilaignar-text {
-        font-size: 45px;
-        fill: #0066FF;
-        font-weight: bold;
-    }
-</style>
-</head>
-<body>
+
 
 <svg width="1000" height="400" viewBox="0 0 1000 400" xmlns="http://www.w3.org/2000/svg">
     
@@ -51,6 +22,3 @@
     <!-- 6. Footer Text -->
     <text x="950" y="320" text-anchor="end" fill="white" font-size="28" font-family="Arial">நேர்படப் பேசு</text>
 </svg>
-
-</body>
-</html>
