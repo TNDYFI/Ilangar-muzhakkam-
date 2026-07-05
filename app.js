@@ -113,7 +113,6 @@ if (container) {
 
 
 
-
 // --- Search Bar Expand/Shrink Logic ---
 const searchContainer = document.querySelector('.search-container');
 const searchInput = document.getElementById('searchInput');
@@ -135,7 +134,8 @@ if (searchContainer && searchInput) {
     });
 
     // Cancel → shrink back
-    cancelBtn.addEventListener('click', () => {
+    cancelBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // prevent re-trigger expand
         searchContainer.classList.remove('active');
         searchInput.value = "";
         if (logo) logo.style.display = "block";         // show logo
@@ -151,3 +151,4 @@ if (searchContainer && searchInput) {
         }
     });
 }
+
