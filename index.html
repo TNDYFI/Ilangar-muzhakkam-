@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>இளைஞர் முழக்கம்</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="loader">
+        <h1>இளைஞர் முழக்கம்</h1>
+        <div class="progress-bar"><div class="progress-fill"></div></div>
+    </div>
+
+    <div class="moving-bg" id="movingBg"></div>
+
+    <header>
+        <button class="icon-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+        <div class="header-title">இளைஞர் முழக்கம்</div>
+        <button class="icon-btn" onclick="toggleDropdown()"><i class="fas fa-ellipsis-v"></i></button>
+    </header>
+
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>இளைஞர் முழக்கம்</h2>
+            <button class="icon-btn" onclick="toggleSidebar()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="sidebar-grid">
+            <div>இந்தியா</div><div>உலகம்</div>
+            <div>சமூகம்</div><div>விளையாட்டு</div>
+            <div>அரசியல்</div><div>இளுடையர் நலம்</div>
+        </div>
+        <ul class="sidebar-list">
+            <li><i class="fas fa-video"></i> வீடியோக்கள்</li>
+            <li><i class="fas fa-podcast"></i> பாட்காஸ்ட்</li>
+            <li><i class="fas fa-camera"></i> புகைப்படங்கள்</li>
+            <li><i class="fas fa-newspaper"></i> மாத இதழ்கள்</li>
+        </ul>
+    </div>
+
+    <div class="dropdown" id="dropdownMenu">
+        <ul>
+            <li onclick="toggleTheme()"><i class="fas fa-moon"></i> Dark / Light Mode</li>
+            <li><i class="fas fa-cog"></i> System Settings</li>
+            <li><i class="fas fa-info-circle"></i> About Us</li>
+            <li><i class="fas fa-bug"></i> Report Bug</li>
+        </ul>
+    </div>
+
+    <main id="news-container">
+        <div style="text-align: center; margin-top: 50px;">செய்திகள் ஏற்றப்படுகின்றன...</div>
+    </main>
+
+    <footer>
+        <div class="footer-item active"><i class="fas fa-home"></i> Home</div>
+        <div class="footer-item"><i class="fas fa-stream"></i> Feed</div>
+        <div class="footer-item"><i class="fas fa-user"></i> Account</div>
+        <div class="footer-item"><i class="fas fa-concierge-bell"></i> Services</div>
+    </footer>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>

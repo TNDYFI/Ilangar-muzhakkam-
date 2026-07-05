@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>அட்மின் கன்சோல் - இளைஞர் முழக்கம்</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f4f4f9; padding: 20px; margin: 0; }
+        .admin-container { max-width: 500px; margin: 40px auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h1 { display: flex; align-items: center; gap: 10px; font-size: 24px; margin-bottom: 5px; color: #333; }
+        .view-site { color: #cc0000; text-decoration: none; font-weight: bold; margin-bottom: 20px; display: inline-block; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: bold; margin-bottom: 8px; font-size: 14px; color: #555; }
+        label span { font-weight: normal; color: gray; font-size: 12px; }
+        input[type="text"], select, textarea {
+            width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px;
+            background-color: #f9f9f9; box-sizing: border-box;
+        }
+        textarea { height: 120px; resize: none; }
+        button {
+            width: 100%; padding: 15px; background-color: #cc0000; color: white;
+            border: none; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; transition: background 0.2s;
+        }
+        button:hover { background-color: #aa0000; }
+        #status { margin-top: 15px; text-align: center; font-weight: bold; color: green; min-height: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="admin-container">
+        <h1>📢 அட்மின் கன்சோல்</h1>
+        <a href="index.html" class="view-site">தளம் காண்க ↗</a>
+
+        <form id="newsForm">
+            <div class="form-group">
+                <label>செய்தி தலைப்பு <span>(HEADLINE)</span></label>
+                <input type="text" id="headline" placeholder="முக்கிய செய்தியின் தலைப்பை உள்ளிடுக..." required>
+            </div>
+
+            <div class="form-group">
+                <label>பிரிவு <span>(CATEGORY)</span></label>
+                <select id="category" required>
+                    <option value="இந்தியா">இந்தியா</option>
+                    <option value="உலகம்">உலகம்</option>
+                    <option value="விளையாட்டு">விளையாட்டு</option>
+                    <option value="அரசியல்">அரசியல்</option>
+                    <option value="சமூகம்">சமூகம்</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>புகைப்பட முகவரி <span>(IMAGE URL)</span></label>
+                <input type="text" id="imgUrl" placeholder="https://..." required>
+            </div>
+
+            <div class="form-group">
+                <label>செய்தி விவரம் <span>(FULL ARTICLE / BODY)</span></label>
+                <textarea id="details" placeholder="செய்தியின் முழு விவரத்தை இங்கே எழுதவும்..." required></textarea>
+            </div>
+
+            <button type="submit">செய்தியை வெளியிடு (PUBLISH)</button>
+            <div id="status"></div>
+        </form>
+    </div>
+
+    <script type="module" src="admin.js"></script>
+</body>
+</html>
