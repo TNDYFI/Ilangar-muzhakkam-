@@ -6,6 +6,7 @@
     --card-bg: #f9f9f9;
     --nav-bg: #ffffff;
     --border-color: #ddd;
+    --logo-url: url("assest/logo-day.png");   /* Day logo */
 }
 
 body.dark-mode {
@@ -15,11 +16,14 @@ body.dark-mode {
     --card-bg: #1e1e24;
     --nav-bg: #15151a;
     --border-color: #333;
+    --logo-url: url("assest/logo-dark.png");  /* Dark logo */
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-
-body { background-color: var(--bg-color); color: var(--text-color); overflow-x: hidden; transition: background 0.3s, color 0.3s; }
+/* Logo element auto-switch */
+.header-title img {
+    content: var(--logo-url);
+    transition: content 0.3s ease, width 0.3s ease;
+}
 
 /* Moving Background */
 .moving-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; opacity: 0; pointer-events: none; background: radial-gradient(circle, #1a1a2e 0%, #0f0f13 100%); transition: opacity 0.5s; }
