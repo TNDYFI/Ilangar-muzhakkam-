@@ -151,3 +151,4 @@ if (searchContainer && searchInput) {
         }
     });
 }
+
