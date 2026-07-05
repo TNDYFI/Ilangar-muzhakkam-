@@ -118,7 +118,7 @@ if (container) {
 const searchContainer = document.querySelector('.search-container');
 const searchInput = document.getElementById('searchInput');
 const logo = document.querySelector('.header-title img');
-const threeDotBtn = document.querySelector('header .icon-btn:last-child');
+const threeDotBtn = document.querySelector('.icon-btn.three-dot'); // ✅ give 3-dot a unique class in HTML
 
 if (searchContainer && searchInput) {
     const cancelBtn = document.createElement('span');
@@ -140,7 +140,7 @@ if (searchContainer && searchInput) {
         searchContainer.classList.remove('active');
         searchInput.value = "";
         if (logo) logo.style.display = "block";         // show logo
-        if (threeDotBtn) threeDotBtn.style.display = "inline-block"; // show 3-dot
+        if (threeDotBtn) threeDotBtn.style.display = "inline-block"; // restore 3-dot
     });
 
     // Blur → shrink if empty
