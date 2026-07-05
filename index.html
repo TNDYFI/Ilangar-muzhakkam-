@@ -10,15 +10,20 @@
 <body>
 
     <div id="loader">
-        <h1>இளைஞர் முழக்கம்</h1>
-        <div class="progress-bar"><div class="progress-fill"></div></div>
+<h1> இளைஞர்   முழக்கம்   </h1>
+<div class="progress-bar"><div class="progress-fill"></div></div>
     </div>
 
     <div class="moving-bg" id="movingBg"></div>
 
     <header>
         <button class="icon-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
-        <div class="header-title">இளைஞர் முழக்கம்</div>
+        <div class="header-title">
+        
+                <img hight="130" width="130" src="assest/logo.png">
+        
+        
+        </div>
         <button class="icon-btn" onclick="toggleDropdown()"><i class="fas fa-ellipsis-v"></i></button>
     </header>
 
@@ -30,7 +35,7 @@
         <div class="sidebar-grid">
             <div>இந்தியா</div><div>உலகம்</div>
             <div>சமூகம்</div><div>விளையாட்டு</div>
-            <div>அரசியல்</div><div>இளுடையர் நலம்</div>
+            <div>அரசியல்</div><div>இளைஞர் நலம்</div>
         </div>
         <ul class="sidebar-list">
             <li><i class="fas fa-video"></i> வீடியோக்கள்</li>
@@ -44,21 +49,142 @@
         <ul>
             <li onclick="toggleTheme()"><i class="fas fa-moon"></i> Dark / Light Mode</li>
             <li><i class="fas fa-cog"></i> System Settings</li>
-            <li><i class="fas fa-info-circle"></i> About Us</li>
+            <li onclick="openModal('aboutModal')"><i class="fas fa-rocket"></i> About Us</li>
+            <li onclick="openModal('contactModal')"><i class="fas fa-headset"></i> Full Contact</li>
             <li><i class="fas fa-bug"></i> Report Bug</li>
         </ul>
     </div>
 
-    <main id="news-container">
-        <div style="text-align: center; margin-top: 50px;">செய்திகள் ஏற்றப்படுகின்றன...</div>
-    </main>
+    <div id="app-pages">
+
+        <section id="page-home" class="page active">
+            <div class="category-scroll">
+                <button class="cat-btn active">🌟 ALL NEWS</button>
+                <button class="cat-btn">⚽ SPORTS</button>
+                <button class="cat-btn">🔭 ASTRONOMY</button>
+                <button class="cat-btn">🔬 SCIENCE</button>
+                <button class="cat-btn">⚖️ LAW</button>
+            </div>
+            <main id="news-container">
+                <div style="text-align: center; margin-top: 50px;">செய்திகள் ஏற்றப்படுகின்றன...</div>
+            </main>
+        </section>
+
+        <section id="page-feed" class="page">
+            <div class="page-header">
+                <h2><i class="fas fa-bolt" style="color: #ff3333;"></i> Trending Feed</h2>
+                <p>உடனுக்குடன் முக்கிய நிகழ்வுகள்</p>
+            </div>
+            <div class="feed-container">
+                <div class="feed-card">
+                    <img src="https://via.placeholder.com/400x400/222/fff?text=Trending+Video+1" alt="Feed">
+                    <div class="feed-info">
+                        <h4>விளையாட்டுத் துறையில் புதிய சாதனை!</h4>
+                        <p>#Sports #Trending</p>
+                    </div>
+                </div>
+                <div class="feed-card">
+                    <img src="https://via.placeholder.com/400x400/333/fff?text=Shorts+News+2" alt="Feed">
+                    <div class="feed-info">
+                        <h4>விண்வெளி ஆராய்ச்சியில் புதிய மைல்கல்</h4>
+                        <p>#Astronomy #Space</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-account" class="page">
+            <div class="profile-header">
+                <img src="https://via.placeholder.com/100/00ffcc/000?text=USER" alt="User Profile" class="profile-img">
+                <h2>பயனர் பெயர்</h2>
+                <p>user@muzhakkam.com</p>
+                <button class="edit-btn">Edit Profile</button>
+            </div>
+            <ul class="account-menu">
+                <li><i class="fas fa-bookmark" style="color: #ffaa00;"></i> சேமித்த செய்திகள் (Saved)</li>
+                <li><i class="fas fa-history" style="color: #00ccff;"></i> படித்தவை (History)</li>
+                <li><i class="fas fa-bell" style="color: #ff3333;"></i> அறிவிப்புகள் (Notifications)</li>
+                <li onclick="toggleTheme()"><i class="fas fa-moon" style="color: #999;"></i> Dark Mode</li>
+                <li style="color: #ff3333;"><i class="fas fa-sign-out-alt"></i> வெளியேறு (Logout)</li>
+            </ul>
+        </section>
+
+        <section id="page-services" class="page">
+            <div class="page-header">
+                <h2><i class="fas fa-concierge-bell" style="color: #00ffcc;"></i> எங்களின் சேவைகள்</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-briefcase"></i>
+                    <h3>வேலைவாய்ப்பு</h3>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-newspaper"></i>
+                    <h3>இ-பேப்பர்</h3>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-star-and-crescent"></i>
+                    <h3>ராசி பலன்</h3>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>பஞ்சாங்கம்</h3>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>கல்வி & தேர்வு</h3>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-ring"></i>
+                    <h3>மேட்ரிமோனி</h3>
+                </div>
+            </div>
+        </section>
+
+    </div>
 
     <footer>
-        <div class="footer-item active"><i class="fas fa-home"></i> Home</div>
-        <div class="footer-item"><i class="fas fa-stream"></i> Feed</div>
-        <div class="footer-item"><i class="fas fa-user"></i> Account</div>
-        <div class="footer-item"><i class="fas fa-concierge-bell"></i> Services</div>
+        <div class="footer-item active" onclick="switchTab('home', this)"><i class="fas fa-home"></i> Home</div>
+        <div class="footer-item" onclick="switchTab('feed', this)"><i class="fas fa-stream"></i> Feed</div>
+        <div class="footer-item" onclick="switchTab('account', this)"><i class="fas fa-user"></i> Account</div>
+        <div class="footer-item" onclick="switchTab('services', this)"><i class="fas fa-concierge-bell"></i> Services</div>
     </footer>
+
+    <div id="contactModal" class="modal-overlay">
+        <div class="modal-content neon-border">
+            <button class="close-btn" onclick="closeModal('contactModal')">&times;</button>
+            <h3 style="color: #00ffcc;"><i class="fas fa-phone-alt"></i> FULL CONTACT</h3>
+            <div class="contact-box">
+                <p><i class="fas fa-globe" style="color: cyan;"></i> ilaignarmuzhakkam.com</p>
+                <p><i class="fas fa-envelope" style="color: cyan;"></i> info@muzhakkam.com</p>
+            </div>
+            <div class="social-links">
+                <p style="font-size: 12px; color: gray;">Follow Socially</p>
+                <div class="icons">
+                    <i class="fab fa-instagram" style="color: #e1306c;"></i>
+                    <i class="fab fa-facebook" style="color: #1877f2;"></i>
+                    <i class="fab fa-linkedin" style="color: #0077b5;"></i>
+                    <i class="fas fa-at" style="color: #fff;"></i>
+                    <i class="fab fa-twitter" style="color: #1da1f2;"></i>
+                    <i class="fab fa-whatsapp" style="color: #25d366;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="aboutModal" class="modal-overlay">
+        <div class="modal-content neon-border">
+            <button class="close-btn" onclick="closeModal('aboutModal')">&times;</button>
+            <img src="https://via.placeholder.com/300x150/111/00ffcc?text=ILAIGNAR+MUZHAKKAM" alt="App Logo" class="about-logo">
+            <h3 style="color: #00ffcc; text-align: center; margin: 15px 0;">இளைஞர் முழக்கம் HUB</h3>
+            <p style="font-size: 13px; line-height: 1.8; color: #ddd;">
+                Welcome to இளைஞர் முழக்கம், the ultimate digital news destination. 
+                Our platform is built using Zero-Lag technology to ensure the smoothest reading experience.
+                <br><br>
+                Every article is optimized for mobile performance. We are constantly adding new updates to our sports, astronomy, science, and law sections.
+            </p>
+        </div>
+    </div>
 
     <script type="module" src="app.js"></script>
 </body>
