@@ -130,7 +130,7 @@ if (searchContainer && searchInput) {
     searchContainer.addEventListener('click', () => {
         searchContainer.classList.add('active');
         searchInput.focus();
-        if (logo) logo.style.width = "50px"; // shrink logo
+        if (logo) logo.style.display = "none";          // hide logo
         if (threeDotBtn) threeDotBtn.style.display = "none"; // hide 3-dot
     });
 
@@ -138,7 +138,7 @@ if (searchContainer && searchInput) {
     cancelBtn.addEventListener('click', () => {
         searchContainer.classList.remove('active');
         searchInput.value = "";
-        if (logo) logo.style.width = "130px"; // restore logo
+        if (logo) logo.style.display = "block";         // show logo
         if (threeDotBtn) threeDotBtn.style.display = "inline-block"; // show 3-dot
     });
 
@@ -146,7 +146,7 @@ if (searchContainer && searchInput) {
     searchInput.addEventListener('blur', () => {
         if (searchInput.value === "") {
             searchContainer.classList.remove('active');
-            if (logo) logo.style.width = "130px";
+            if (logo) logo.style.display = "block";
             if (threeDotBtn) threeDotBtn.style.display = "inline-block";
         }
     });
