@@ -5,9 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>இளைஞர் முழக்கம்</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">    
+</head>
+<body>
 
-<!---------test--------->
+    <div id="loader">
+<h1> இளைஞர்   முழக்கம்   </h1>
+<div class="progress-bar"><div class="progress-fill"></div></div>
+    </div>
+
+    <div class="moving-bg" id="movingBg"></div>
+<!----------searchbar------------>
+<header>
   <button class="icon-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
   <div class="header-title">
     <img height="130" width="130" src="assest/logo.png">
@@ -18,27 +27,8 @@
     <input type="text" id="searchInput" placeholder="Search in database...">
   </div>
   <button class="icon-btn" onclick="toggleDropdown()"><i class="fas fa-ellipsis-v"></i></button>
-<!-------end--------------> 
-    
-</head>
-<body>
-
-    <div id="loader">
-<h1> இளைஞர்   முழக்கம்   </h1>
-<div class="progress-bar"><div class="progress-fill"></div></div>
-    </div>
-
-    <div class="moving-bg" id="movingBg"></div>
-
-    <header>
-        <button class="icon-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
-        <div class="header-title">
-        
-                <img hight="130" width="130" src="assest/logo.png">
-        
-        </div>
-        <button class="icon-btn" onclick="toggleDropdown()"><i class="fas fa-ellipsis-v"></i></button>
-    </header>
+</header>
+<!-----------------end--------------->
 
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
