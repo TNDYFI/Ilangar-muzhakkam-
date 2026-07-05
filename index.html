@@ -8,11 +8,16 @@
     <link rel="stylesheet" href="style.css">
 
 <!---------test--------->
-<div class="search-container">
-  <span class="search-icon">🔍</span>
-  <input type="text" id="searchInput" placeholder="Search in database...">
-</div>
-<div id="results"></div>
+  <button class="icon-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+  <div class="header-title">
+    <img height="130" width="130" src="assest/logo.png">
+  </div>
+  <!-- Search bar inside header -->
+  <div class="search-container">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="Search in database...">
+  </div>
+  <button class="icon-btn" onclick="toggleDropdown()"><i class="fas fa-ellipsis-v"></i></button>
 <!-------end--------------> 
     
 </head>
