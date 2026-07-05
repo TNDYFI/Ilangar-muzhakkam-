@@ -125,7 +125,7 @@ if (searchContainer && searchInput) {
         searchContainer.classList.add('active');
         searchInput.focus();
         const logo = document.querySelector('.header-title img');
-        if (logo) logo.style.width = "80px"; // shrink logo
+        if (logo) logo.style.width = "50px"; logo.style.hight ="50px"; // shrink logo
     });
 
     // Cancel → shrink back
@@ -133,7 +133,7 @@ if (searchContainer && searchInput) {
         searchContainer.classList.remove('active');
         searchInput.value = "";
         const logo = document.querySelector('.header-title img');
-        if (logo) logo.style.width = "130px"; // restore logo
+        if (logo) logo.style.width = "90px"; // restore logo
     });
 
     // Blur → shrink if empty
@@ -141,7 +141,7 @@ if (searchContainer && searchInput) {
         if (searchInput.value === "") {
             searchContainer.classList.remove('active');
             const logo = document.querySelector('.header-title img');
-            if (logo) logo.style.width = "130px";
+            if (logo) logo.style.width = "90px";
         }
     });
 }
