@@ -158,7 +158,7 @@ footer { position: fixed; bottom: 0; width: 100%; height: 60px; background-color
   width: 40px;              /* compact default */
   overflow: hidden;
   transition: all 0.3s ease;
-  margin-left: auto;        /* push to right side */
+  margin-left: 10px;        /* space between 3-dot and search bar */
 }
 
 .search-container.active {
@@ -171,8 +171,6 @@ footer { position: fixed; bottom: 0; width: 100%; height: 60px; background-color
 }
 
 .search-icon {
-  order: 0;          /* icon first */
-  margin-left: 300px;
   font-size: 1.2rem;
   color: #e63946;
   flex-shrink: 0;
@@ -202,3 +200,4 @@ footer { position: fixed; bottom: 0; width: 100%; height: 60px; background-color
 .search-container.active .cancel-btn {
   display: block;
 }
+
