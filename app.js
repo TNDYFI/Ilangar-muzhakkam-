@@ -24,6 +24,7 @@ window.toggleDropdown = function() {
 window.toggleTheme = function() {
     document.body.classList.toggle('dark-mode');
     document.getElementById('dropdownMenu').classList.remove('active');
+    // Logo auto-switch handled by CSS variables
 }
 
 // 3. Modals 
