@@ -113,7 +113,6 @@ if (container) {
 }
 
 
-
 // --- Search Bar Expand/Shrink Logic ---
 const searchContainer = document.querySelector('.search-container');
 const searchInput = document.getElementById('searchInput');
