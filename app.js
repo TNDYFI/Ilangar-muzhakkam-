@@ -118,7 +118,7 @@ if (container) {
 const searchContainer = document.querySelector('.search-container');
 const searchInput = document.getElementById('searchInput');
 const logo = document.querySelector('.header-title img');
-const threeDotBtn = document.querySelector('.icon-btn.three-dot'); // ✅ give 3-dot a unique class in HTML
+const threeDotBtn = document.querySelector('.three-dot-btn'); // ✅ correct selector
 
 if (searchContainer && searchInput) {
     const cancelBtn = document.createElement('span');
@@ -148,7 +148,8 @@ if (searchContainer && searchInput) {
         if (searchInput.value === "") {
             searchContainer.classList.remove('active');
             if (logo) logo.style.display = "block";
-            if (threeDotBtn) threeDotBtn.style.display = "inline-block";
+            if (threeDotBtn) threeDotBtn.style.display = "inline-block"; // restore 3-dot
         }
     });
 }
+
