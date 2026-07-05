@@ -110,3 +110,38 @@ if (container) {
         });
     });
 }
+
+// --- Search Bar Expand/Shrink Logic ---
+const searchContainer = document.querySelector('.search-container');
+const searchInput = document.getElementById('searchInput');
+if (searchContainer && searchInput) {
+    const cancelBtn = document.createElement('span');
+    cancelBtn.classList.add('cancel-btn');
+    cancelBtn.textContent = "✖";
+    searchContainer.appendChild(cancelBtn);
+
+    // Expand on click
+    searchContainer.addEventListener('click', () => {
+        searchContainer.classList.add('active');
+        searchInput.focus();
+        const logo = document.querySelector('.header-title img');
+        if (logo) logo.style.width = "80px"; // shrink logo
+    });
+
+    // Cancel → shrink back
+    cancelBtn.addEventListener('click', () => {
+        searchContainer.classList.remove('active');
+        searchInput.value = "";
+        const logo = document.querySelector('.header-title img');
+        if (logo) logo.style.width = "130px"; // restore logo
+    });
+
+    // Blur → shrink if empty
+    searchInput.addEventListener('blur', () => {
+        if (searchInput.value === "") {
+            searchContainer.classList.remove('active');
+            const logo = document.querySelector('.header-title img');
+            if (logo) logo.style.width = "130px";
+        }
+    });
+}
