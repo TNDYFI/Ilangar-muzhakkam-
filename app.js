@@ -111,9 +111,15 @@ if (container) {
     });
 }
 
+
+
+
 // --- Search Bar Expand/Shrink Logic ---
 const searchContainer = document.querySelector('.search-container');
 const searchInput = document.getElementById('searchInput');
+const logo = document.querySelector('.header-title img');
+const threeDotBtn = document.querySelector('header .icon-btn:last-child');
+
 if (searchContainer && searchInput) {
     const cancelBtn = document.createElement('span');
     cancelBtn.classList.add('cancel-btn');
@@ -124,24 +130,25 @@ if (searchContainer && searchInput) {
     searchContainer.addEventListener('click', () => {
         searchContainer.classList.add('active');
         searchInput.focus();
-        const logo = document.querySelector('.header-title img');
-        if (logo) logo.style.width = "50px"; logo.style.hight ="50px"; // shrink logo
+        if (logo) logo.style.width = "50px"; // shrink logo
+        if (threeDotBtn) threeDotBtn.style.display = "none"; // hide 3-dot
     });
 
     // Cancel → shrink back
     cancelBtn.addEventListener('click', () => {
         searchContainer.classList.remove('active');
         searchInput.value = "";
-        const logo = document.querySelector('.header-title img');
-        if (logo) logo.style.width = "90px"; // restore logo
+        if (logo) logo.style.width = "130px"; // restore logo
+        if (threeDotBtn) threeDotBtn.style.display = "inline-block"; // show 3-dot
     });
 
     // Blur → shrink if empty
     searchInput.addEventListener('blur', () => {
         if (searchInput.value === "") {
             searchContainer.classList.remove('active');
-            const logo = document.querySelector('.header-title img');
-            if (logo) logo.style.width = "90px";
+            if (logo) logo.style.width = "130px";
+            if (threeDotBtn) threeDotBtn.style.display = "inline-block";
         }
     });
 }
+
