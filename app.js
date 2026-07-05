@@ -24,7 +24,6 @@ window.toggleDropdown = function() {
 window.toggleTheme = function() {
     document.body.classList.toggle('dark-mode');
     document.getElementById('dropdownMenu').classList.remove('active');
-    // Logo auto-switch handled by CSS variables
 }
 
 // 3. Modals 
@@ -113,11 +112,13 @@ if (container) {
 }
 
 
+
+
 // --- Search Bar Expand/Shrink Logic ---
 const searchContainer = document.querySelector('.search-container');
 const searchInput = document.getElementById('searchInput');
 const logo = document.querySelector('.header-title img');
-const threeDotBtn = document.querySelector('.three-dot-btn'); // ✅ correct selector
+const threeDotBtn = document.querySelector('header .icon-btn:last-child');
 
 if (searchContainer && searchInput) {
     const cancelBtn = document.createElement('span');
@@ -129,27 +130,24 @@ if (searchContainer && searchInput) {
     searchContainer.addEventListener('click', () => {
         searchContainer.classList.add('active');
         searchInput.focus();
-        if (logo) logo.style.display = "none";          // hide logo
+        if (logo) logo.style.width = "50px"; // shrink logo
         if (threeDotBtn) threeDotBtn.style.display = "none"; // hide 3-dot
     });
 
     // Cancel → shrink back
-    cancelBtn.addEventListener('click', (e) => {
-        e.stopPropagation(); // prevent re-trigger expand
+    cancelBtn.addEventListener('click', () => {
         searchContainer.classList.remove('active');
         searchInput.value = "";
-        if (logo) logo.style.display = "block";         // show logo
-        if (threeDotBtn) threeDotBtn.style.display = "inline-block"; // restore 3-dot
+        if (logo) logo.style.width = "130px"; // restore logo
+        if (threeDotBtn) threeDotBtn.style.display = "inline-block"; // show 3-dot
     });
 
     // Blur → shrink if empty
     searchInput.addEventListener('blur', () => {
         if (searchInput.value === "") {
             searchContainer.classList.remove('active');
-            if (logo) logo.style.display = "block";
-            if (threeDotBtn) threeDotBtn.style.display = "inline-block"; // restore 3-dot
+            if (logo) logo.style.width = "130px";
+            if (threeDotBtn) threeDotBtn.style.display = "inline-block";
         }
     });
 }
-
-
