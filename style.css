@@ -172,7 +172,7 @@ footer { position: fixed; bottom: 0; width: 100%; height: 60px; background-color
 
 .search-icon {
   order: 0;          /* icon first */
-  margin-left: 10px;
+  margin-left: 300px;
   font-size: 1.2rem;
   color: #e63946;
   flex-shrink: 0;
