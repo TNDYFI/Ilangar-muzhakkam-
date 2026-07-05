@@ -1,248 +1,208 @@
 <!DOCTYPE html>
 <html lang="ta">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
-  <title>இளைஞர் முழக்கம் — Demo</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    /* --- Variables & Theme --- */
-    :root{
-      --bg:#ffffff; --text:#000; --nav:#ffffff; --card:#f9f9f9; --border:#ddd; --accent:#cc0000;
-      --logo-url: url("assest/logo-day.png");
-    }
-    body.dark-mode{
-      --bg:#0f0f13; --text:#e0e0e0; --nav:#15151a; --card:#1e1e24; --border:#333; --accent:#ff3333;
-      --logo-url: url("assest/logo-dark.png");
-    }
-    *{box-sizing:border-box;margin:0;padding:0;font-family:Segoe UI, Tahoma, Geneva, Verdana, sans-serif}
-    body{background:var(--bg);color:var(--text);transition:background .25s,color .25s;overflow-x:hidden}
-
-    /* Header */
-    header{position:fixed;top:0;left:0;right:0;height:60px;background:var(--nav);display:flex;align-items:center;padding:0 12px;border-bottom:1px solid var(--border);z-index:1000}
-    .icon-btn{background:none;border:none;font-size:20px;color:var(--text);cursor:pointer;padding:8px;border-radius:8px}
-    .header-title{flex:0 0 auto;display:flex;align-items:center;gap:8px;margin:0 12px}
-    .header-title img{width:48px;height:48px;object-fit:contain;content:var(--logo-url);transition:opacity .2s}
-    /* center title container to allow logo centering when search collapsed */
-    .header-center{flex:1;display:flex;justify-content:center;align-items:center;pointer-events:none}
-    .header-right{display:flex;align-items:center;gap:8px;margin-left:auto}
-
-    /* Search container */
-    .search-container{display:flex;align-items:center;background:#fff;border-radius:20px;padding:6px 10px;box-shadow:0 2px 6px rgba(0,0,0,.08);width:44px;overflow:hidden;transition:all .28s ease;cursor:text}
-    .search-container .search-icon{font-size:18px;margin-right:6px;flex-shrink:0}
-    .search-container input{border:0;outline:0;font-size:15px;background:transparent;display:none;min-width:120px}
-    .search-container .cancel-btn{display:none;margin-left:8px;color:#666;cursor:pointer;font-size:16px}
-    .search-container.active{position:fixed;left:50%;transform:translateX(-50%);top:8px;width:92%;max-width:520px;padding:8px 12px;z-index:1100}
-    .search-container.active input{display:block}
-    .search-container.active .cancel-btn{display:inline-block}
-
-    /* Dropdown (3-dot menu) */
-    .three-dot-btn{position:relative}
-    .dropdown{position:fixed;top:68px;right:12px;background:var(--nav);border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,.18);display:none;z-index:1200;border:1px solid var(--border)}
-    .dropdown.active{display:block}
-    .dropdown ul{list-style:none;padding:8px 0;margin:0}
-    .dropdown li{padding:10px 16px;cursor:pointer;white-space:nowrap}
-    .dropdown li:hover{background:rgba(0,0,0,.04)}
-
-    /* Page spacing */
-    main{padding:80px 12px 80px}
-    footer{position:fixed;bottom:0;left:0;right:0;height:60px;background:var(--nav);border-top:1px solid var(--border);display:flex;justify-content:space-around;align-items:center;z-index:1000}
-
-    /* small responsive tweaks */
-    @media (min-width:720px){
-      .search-container{width:220px}
-      .search-container input{display:block}
-      .search-container .search-icon{margin-right:10px}
-    }
-
-    /* loader (kept minimal) */
-    #loader{position:fixed;inset:0;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;z-index:2000}
-    .progress-bar{width:60%;height:4px;background:#222;border-radius:2px;overflow:hidden;margin-top:12px}
-    .progress-fill{width:0;height:100%;background:#00ffcc;animation:loadBar 2s forwards}
-    @keyframes loadBar{100%{width:100%}}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>இளைஞர் முழக்கம்</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">    
 </head>
 <body>
 
-  <div id="loader">
-    <h1>இளைஞர் முழக்கம்</h1>
-    <div class="progress-bar"><div class="progress-fill"></div></div>
-  </div>
-
-  <header>
-    <button class="icon-btn sidebar-btn" onclick="toggleSidebar()" aria-label="Open menu"><i class="fas fa-bars"></i></button>
-
-    <div class="header-center">
-      <div class="header-title" aria-hidden="true">
-        <img id="siteLogo" src="assest/logo.png" alt="இளைஞர் முழக்கம்">
-      </div>
+    <div id="loader">
+<h1> இளைஞர்   முழக்கம்   </h1>
+<div class="progress-bar"><div class="progress-fill"></div></div>
     </div>
 
-    <div class="header-right">
-      <!-- Search -->
-      <div class="search-container" id="searchContainer" role="search" aria-label="Search">
-        <span class="search-icon" aria-hidden="true">🔍</span>
-        <input id="searchInput" type="text" placeholder="Search in database..." aria-label="Search input">
-        <span class="cancel-btn" id="searchCancel" title="Cancel">✖</span>
-      </div>
-
-      <!-- 3-dot button with unique class -->
-      <button class="icon-btn three-dot-btn" id="threeDotBtn" onclick="toggleDropdown()" aria-haspopup="true" aria-expanded="false" aria-label="More options">
-        <i class="fas fa-ellipsis-v"></i>
-      </button>
-    </div>
-  </header>
-
-  <!-- Dropdown menu -->
-  <div class="dropdown" id="dropdownMenu" role="menu" aria-hidden="true">
-    <ul>
-      <li onclick="toggleTheme()">Dark / Light Mode</li>
-      <li onclick="openModal('aboutModal')">About Us</li>
-      <li onclick="openModal('contactModal')">Full Contact</li>
-      <li onclick="reportBug()">Report Bug</li>
-    </ul>
+    <div class="moving-bg" id="movingBg"></div>
+<!----------searchbar------------>
+<header>
+  <button class="icon-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+  <div class="header-title">
+    <img height="90" width="90" src="assest/logo.png">
   </div>
+  <!-- Search bar inside header -->
+  <div class="search-container">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="Search in database...">
+  </div>
+  <button class="icon-btn" onclick="toggleDropdown()"><i class="fas fa-ellipsis-v"></i></button>
+</header>
+<!-----------------end--------------->
 
-  <main>
-    <h2>முகப்பு</h2>
-    <p>செய்திகள் ஏற்றப்படுகின்றன...</p>
-  </main>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>இளைஞர் முழக்கம்</h2>
+            <button class="icon-btn" onclick="toggleSidebar()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="sidebar-grid">
+            <div>இந்தியா</div><div>உலகம்</div>
+            <div>சமூகம்</div><div>விளையாட்டு</div>
+            <div>அரசியல்</div><div>இளைஞர் நலம்</div>
+        </div>
+        <ul class="sidebar-list">
+            <li><i class="fas fa-video"></i> வரலாறு </li>
+            <li><i class="fas fa-podcast"></i> சமுகம்</li>
+            <li><i class="fas fa-camera"></i> புகைப்படங்கள்</li>
+            <li><i class="fas fa-newspaper"></i> மாத இதழ்கள்</li>
+        </ul>
+    </div>
+    <div class="dropdown" id="dropdownMenu">
+        <ul>
+            <li onclick="toggleTheme()"><i class="fas fa-moon"></i> Dark / Light Mode</li>
+            <li><i class="fas fa-cog"></i> System Settings</li>
+            <li onclick="openModal('aboutModal')"><i class="fas fa-rocket"></i> About Us</li>
+            <li onclick="openModal('contactModal')"><i class="fas fa-headset"></i> Full Contact</li>
+            <li><i class="fas fa-bug"></i> Report Bug</li>
+            <li class="cancel-btn" onclick="toggleDropdown()">
+            <i class="fas fa-times-circle"></i> (Cancel)
+        </ul>
+    </div>
+    <div id="app-pages">
 
-  <footer>
-    <div class="footer-item"><i class="fas fa-home"></i></div>
-    <div class="footer-item"><i class="fas fa-stream"></i></div>
-    <div class="footer-item"><i class="fas fa-user"></i></div>
-    <div class="footer-item"><i class="fas fa-concierge-bell"></i></div>
-  </footer>
+        <section id="page-home" class="page active">
+            <div class="category-scroll">
+                <button class="cat-btn active">🌟 ALL NEWS</button>
+                <button class="cat-btn active">⚽ SPORTS</button>
+                <button class="cat-btn active">🔭 ASTRONOMY</button>
+                <button class="cat-btn active">🔬 SCIENCE</button>
+                <button class="cat-btn active">⚖️ LAW</button>
+            </div>
+            <main id="news-container">
+                <div style="text-align: center; margin-top: 50px;">செய்திகள் ஏற்றப்படுகின்றன...</div>
+            </main>
+        </section>
 
-  <!-- Simple modals (placeholders) -->
-  <div id="aboutModal" style="display:none"></div>
-  <div id="contactModal" style="display:none"></div>
+        <section id="page-feed" class="page">
+            <div class="page-header">
+                <h2><i class="fas fa-bolt" style="color: #ff3333;"></i> Trending Feed</h2>
+                <p>உடனுக்குடன் முக்கிய நிகழ்வுகள்</p>
+            </div>
+            <div class="feed-container">
+                <div class="feed-card">
+                    <img src="https://via.placeholder.com/400x400/222/fff?text=Trending+Video+1" alt="Feed">
+                    <div class="feed-info">
+                        <h4>விளையாட்டுத் துறையில் புதிய சாதனை!</h4>
+                        <p>#Sports #Trending</p>
+                    </div>
+                </div>
+                <div class="feed-card">
+                    <img src="https://via.placeholder.com/400x400/333/fff?text=Shorts+News+2" alt="Feed">
+                    <div class="feed-info">
+                        <h4>விண்வெளி ஆராய்ச்சியில் புதிய மைல்கல்</h4>
+                        <p>#Astronomy #Space</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <script type="module">
-    // --- Basic UI helpers (kept minimal) ---
-    window.toggleSidebar = function(){ /* placeholder */ console.log('toggleSidebar') }
-    window.openModal = function(id){ document.getElementById(id).style.display = 'block' }
-    window.closeModal = function(id){ document.getElementById(id).style.display = 'none' }
-    window.reportBug = function(){ alert('Report bug clicked') }
+        <section id="page-account" class="page">
+            <div class="profile-header">
+                <img src="https://via.placeholder.com/100/00ffcc/000?text=USER" alt="User Profile" class="profile-img">
+                <h2>பயனர் பெயர்</h2>
+                <p>user@muzhakkam.com</p>
+                <button class="edit-btn">Edit Profile</button>
+            </div>
+            <ul class="account-menu">
+                <li><i class="fas fa-bookmark" style="color: #ffaa00;"></i> சேமித்த செய்திகள் </li>
+                <li><i class="fas fa-history" style="color: #00ccff;"></i> படித்தவை </li>
+                <li><i class="fas fa-bell" style="color: #ff3333;"></i> அறிவிப்புகள் </li>
+                <li onclick="toggleTheme()"><i class="fas fa-moon" style="color: #999;"></i> Dark Mode</li>
+                <li style="color: #ff3333;"><i class="fas fa-sign-out-alt"></i> வெளியேறு (Logout)</li>
+            </ul>
+        </section>
 
-    // Theme toggle (also updates logo via CSS variable fallback)
-    window.toggleTheme = function(){
-      document.body.classList.toggle('dark-mode');
-      // If you want to swap src instead of CSS content, do it here:
-      const logo = document.getElementById('siteLogo');
-      if(document.body.classList.contains('dark-mode')){
-        logo.src = 'assest/logo-dark.png';
-      } else {
-        logo.src = 'assest/logo-day.png';
-      }
-      // close dropdown if open
-      document.getElementById('dropdownMenu').classList.remove('active');
-      document.getElementById('threeDotBtn').setAttribute('aria-expanded','false');
-    }
+        <section id="page-services" class="page">
+            <div class="page-header">
+                <h2><i class="fas fa-concierge-bell" style="color: #00ffcc;"></i> எங்களின் சேவைகள்</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-briefcase"></i>
+                    <h3>வேலைவாய்ப்பு</h3>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-newspaper"></i>
+                    <h3>இ-பேப்பர்</h3>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-star-and-crescent"></i>
+                    <h3>ராசி பலன்</h3>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>பஞ்சாங்கம்</h3>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>கல்வி & தேர்வு</h3>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-ring"></i>
+                    <h3>மேட்ரிமோனி</h3>
+                </div>
+            </div>
+        </section>
 
-    // --- Loader hide ---
-    setTimeout(()=> {
-      const loader = document.getElementById('loader');
-      if(loader){ loader.style.opacity='0'; setTimeout(()=>loader.style.display='none',400) }
-    }, 2200);
+    </div>
 
-    // --- Search expand/shrink logic (robust) ---
-    (function(){
-      const searchContainer = document.getElementById('searchContainer');
-      const searchInput = document.getElementById('searchInput');
-      const cancelBtn = document.getElementById('searchCancel');
-      const logo = document.getElementById('siteLogo');
-      const threeDotBtn = document.getElementById('threeDotBtn');
-      const dropdown = document.getElementById('dropdownMenu');
+    <footer>
+        <div class="footer-item active" onclick="switchTab('home', this)"><i class="fas fa-home"></i> Home</div>
+        <div class="footer-item" onclick="switchTab('feed', this)"><i class="fas fa-stream"></i> Feed</div>
+        <div class="footer-item" onclick="switchTab('account', this)"><i class="fas fa-user"></i> Account</div>
+        <div class="footer-item" onclick="switchTab('services', this)"><i class="fas fa-concierge-bell"></i> Services</div>
+    </footer>
 
-      // Safety: ensure elements exist
-      if(!searchContainer || !searchInput) return;
+    <div id="contactModal" class="modal-overlay">
+        <div class="modal-content neon-border">
+            <button class="close-btn" onclick="closeModal('contactModal')">&times;</button>
+            <h3 style="color: #00ffcc;"><i class="fas fa-phone-alt"></i> FULL CONTACT</h3>
+            <div class="contact-box">
+                <p><i class="fas fa-globe" style="color: cyan;"></i> ilaignarmuzhakkam.com</p>
+                <p><i class="fas fa-envelope" style="color: cyan;"></i> info@muzhakkam.com</p>
+            </div>
+<!----------------------------------Social--Media--------------------------------->
+            <div class="social-links">
+                <p style="font-size: 12px; color: gray;">Follow Socially</p>
+                <div class="icons">
+<a href="https://www.instagram.com/ilangarmuzhakkam" target="_blank" style="text-decoration:none; color:inherit;">
+    <i class="fab fa-instagram" style="color: #e1306c;"></i> 
+</a>
+<a href="https://www.facebook.com/ilangarmuzhakkam" target="_blank" style="text-decoration:none; color:inherit;">
+    <i class="fab fa-facebook" style="color: #1877f2;"></i> 
+</a>
+<a href="https://www.linkedin.com/in/ilangarmuzhakkam" target="_blank" style="text-decoration:none; color:inherit;">
+    <i class="fab fa-linkedin" style="color: #0077b5;"></i> 
+</a>
+<a href="mailto:info@ilangarmuzhakkam.com" style="text-decoration:none; color:inherit;">
+    <i class="fas fa-at" style="color: #fff;"></i> 
+</a>
+<a href="https://twitter.com/ilangarmuzhakkam" target="_blank" style="text-decoration:none; color:inherit;">
+    <i class="fab fa-twitter" style="color: #1da1f2;"></i> 
+</a>
+<a href="https://wa.me/91XXXXXXXXXX" target="_blank" style="text-decoration:none; color:inherit;">
+    <i class="fab fa-whatsapp" style="color: #25d366;"></i> 
+</a>
+                </div>
+            </div>
+<!-----------------------End--------------------------->
+        </div>
+    </div>
 
-      // Expand function
-      function expandSearch(){
-        if(searchContainer.classList.contains('active')) return;
-        searchContainer.classList.add('active');
-        // hide logo and 3-dot visually but keep in DOM for accessibility
-        if(logo) logo.style.visibility = 'hidden';
-        if(threeDotBtn) { threeDotBtn.style.visibility = 'hidden'; threeDotBtn.setAttribute('aria-hidden','true'); }
-        // close dropdown if open
-        dropdown.classList.remove('active');
-        threeDotBtn.setAttribute('aria-expanded','false');
-        // focus input
-        setTimeout(()=> searchInput.focus(), 50);
-      }
+    <div id="aboutModal" class="modal-overlay">
+        <div class="modal-content neon-border">
+            <button class="close-btn" onclick="closeModal('aboutModal')">&times;</button>
+            <img src="https://via.placeholder.com/300x150/111/00ffcc?text=ILAIGNAR+MUZHAKKAM" alt="App Logo" class="about-logo">
+            <h3 style="color: #00ffcc; text-align: center; margin: 15px 0;">இளைஞர் முழக்கம் HUB</h3>
+            <p style="font-size: 13px; line-height: 1.8; color: #ddd;">
+                Welcome to இளைஞர் முழக்கம், the ultimate digital news destination. 
+                Our platform is built using Zero-Lag technology to ensure the smoothest reading experience.
+                <br><br>
+                Every article is optimized for mobile performance. We are constantly adding new updates to our sports, astronomy, science, and law sections.
+            </p>
+        </div>
+    </div>
 
-      // Collapse function
-      function collapseSearch(){
-        if(!searchContainer.classList.contains('active')) return;
-        searchContainer.classList.remove('active');
-        if(logo) logo.style.visibility = 'visible';
-        if(threeDotBtn) { threeDotBtn.style.visibility = 'visible'; threeDotBtn.removeAttribute('aria-hidden'); }
-        searchInput.value = '';
-      }
-
-      // Click on container (but not on cancel) expands
-      searchContainer.addEventListener('click', (ev)=>{
-        // if clicked on cancel, ignore here
-        if(ev.target === cancelBtn) return;
-        expandSearch();
-      });
-
-      // Cancel button
-      cancelBtn.addEventListener('click', (ev)=>{
-        ev.stopPropagation();
-        collapseSearch();
-        // return focus to body so keyboard hides on mobile
-        document.activeElement.blur();
-      });
-
-      // Blur: collapse only if empty
-      searchInput.addEventListener('blur', ()=>{
-        // small timeout to allow click on cancel to register
-        setTimeout(()=>{
-          if(searchInput.value.trim() === '') collapseSearch();
-        }, 120);
-      });
-
-      // Escape key closes search
-      document.addEventListener('keydown', (ev)=>{
-        if(ev.key === 'Escape' && searchContainer.classList.contains('active')){
-          collapseSearch();
-          searchInput.blur();
-        }
-      });
-
-      // Click outside: if search active and click outside container, collapse
-      document.addEventListener('click', (ev)=>{
-        if(!searchContainer.classList.contains('active')) return;
-        const isInside = searchContainer.contains(ev.target) || (threeDotBtn && threeDotBtn.contains(ev.target));
-        if(!isInside){
-          // if input has text, keep expanded; else collapse
-          if(searchInput.value.trim() === '') collapseSearch();
-        }
-      });
-
-      // Prevent searchContainer click from toggling dropdown accidentally
-      if(threeDotBtn){
-        threeDotBtn.addEventListener('click', (ev)=>{
-          ev.stopPropagation();
-          dropdown.classList.toggle('active');
-          const expanded = dropdown.classList.contains('active');
-          threeDotBtn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-          // when dropdown opens, hide search if open
-          if(expanded && searchContainer.classList.contains('active')){
-            collapseSearch();
-          }
-        });
-      }
-
-      // Accessibility: tapping the icon inside search should focus input
-      const searchIcon = searchContainer.querySelector('.search-icon');
-      if(searchIcon){
-        searchIcon.addEventListener('click', (ev)=>{ ev.stopPropagation(); expandSearch(); });
-      }
-    })();
-  </script>
+    <script type="module" src="app.js"></script>
 </body>
 </html>
